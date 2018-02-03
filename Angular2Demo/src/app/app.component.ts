@@ -2,11 +2,13 @@ import { Component } from "@angular/core"
 
 @Component({
     selector: 'my-app',
-    template: `<list-employee></list-employee>
-                <br/>    <br/>    
+    template: ` <h3>Component LifeCycle Hook - ngOnChanges()</h3>                
                 Your text : <input type='text' [(ngModel)]='userText'>
-                <br/>        <br/>        
+                <br/><br/>        
                 <simple [simpleInput]='userText'> </simple>
+                <br/><br/>
+                <h3>Angular Service </h3>
+                <list-employee></list-employee>
                 `
 })
 

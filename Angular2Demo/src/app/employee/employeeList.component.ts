@@ -1,26 +1,37 @@
-﻿import { Component } from '@angular/core'
-import { IEmployee } from './employee'
+﻿import { Component, OnInit } from '@angular/core';
+import { IEmployee } from './employee';
+import { EmployeeService } from './employee.service';
 
 
 @Component({
     selector: 'list-employee',
     templateUrl: 'app/employee/employeeList.component.html',
-    styleUrls: ['app/employee/employeeList.component.css']
+    styleUrls: ['app/employee/employeeList.component.css'],
+    providers: [EmployeeService] //registering EmployeeService to component 
 })
 
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit {
 
     employees: IEmployee[]; //any[];
 
-    constructor()
-    {
-        this.employees = [
-            { code: 'emp101', name: 'Tom', gender: 'Male', annualSalary: 5500, dateOfBirth: '10/12/1985' },
-            { code: 'emp102', name: 'Alex', gender: 'Male', annualSalary: 5700, dateOfBirth: '3/2/1992' },
-            { code: 'emp103', name: 'Mike', gender: 'Male', annualSalary: 9500, dateOfBirth: '9/27/1995' },
-            { code: 'emp104', name: 'Mery', gender: 'Female', annualSalary: 6500, dateOfBirth: '6/19/1990' }
-        ];
+    constructor(private _employeeService: EmployeeService) { //e.g. dependency injection
+        //this.employees = this._employeeService.getEmployees();
     }
+
+    ngOnInit() {
+        //as service call might be time consuming, better call it in ngOnInit() instead of constructors.
+        this.employees = this._employeeService.getEmployees();
+    }
+
+    //constructor()
+    //{
+    //    this.employees = [
+    //        //{ code: 'emp101', name: 'Tom', gender: 'Male', annualSalary: 5500, dateOfBirth: '10/12/1985' },
+    //        //{ code: 'emp102', name: 'Alex', gender: 'Male', annualSalary: 5700, dateOfBirth: '3/2/1992' },
+    //        //{ code: 'emp103', name: 'Mike', gender: 'Male', annualSalary: 9500, dateOfBirth: '9/27/1995' },
+    //        //{ code: 'emp104', name: 'Mery', gender: 'Female', annualSalary: 6500, dateOfBirth: '6/19/1990' }
+    //    ];
+    //}
 
     getEmployees(): void {
         this.employees = [

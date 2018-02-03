@@ -54,7 +54,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "<list-employee></list-employee>\n                <br/>    <br/>    \n                Your text : <input type='text' [(ngModel)]='userText'>\n                <br/>        <br/>        \n                <simple [simpleInput]='userText'> </simple>\n                "
+        template: " <h3>Component LifeCycle Hook - ngOnChanges()</h3>                \n                Your text : <input type='text' [(ngModel)]='userText'>\n                <br/><br/>        \n                <simple [simpleInput]='userText'> </simple>\n                <br/><br/>\n                <h3>Angular Service </h3>\n                <list-employee></list-employee>\n                "
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

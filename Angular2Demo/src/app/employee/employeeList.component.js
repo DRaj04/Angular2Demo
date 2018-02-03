@@ -10,17 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var employee_service_1 = require("./employee.service");
 var EmployeeListComponent = (function () {
-    function EmployeeListComponent() {
+    function EmployeeListComponent(_employeeService) {
+        this._employeeService = _employeeService;
         //------
         this.selectedEmployeeCountRadioButton = "All";
-        this.employees = [
-            { code: 'emp101', name: 'Tom', gender: 'Male', annualSalary: 5500, dateOfBirth: '10/12/1985' },
-            { code: 'emp102', name: 'Alex', gender: 'Male', annualSalary: 5700, dateOfBirth: '3/2/1992' },
-            { code: 'emp103', name: 'Mike', gender: 'Male', annualSalary: 9500, dateOfBirth: '9/27/1995' },
-            { code: 'emp104', name: 'Mery', gender: 'Female', annualSalary: 6500, dateOfBirth: '6/19/1990' }
-        ];
+        //this.employees = this._employeeService.getEmployees();
     }
+    EmployeeListComponent.prototype.ngOnInit = function () {
+        //as service call might be time consuming, better call it in ngOnInit() instead of constructors.
+        this.employees = this._employeeService.getEmployees();
+    };
+    //constructor()
+    //{
+    //    this.employees = [
+    //        //{ code: 'emp101', name: 'Tom', gender: 'Male', annualSalary: 5500, dateOfBirth: '10/12/1985' },
+    //        //{ code: 'emp102', name: 'Alex', gender: 'Male', annualSalary: 5700, dateOfBirth: '3/2/1992' },
+    //        //{ code: 'emp103', name: 'Mike', gender: 'Male', annualSalary: 9500, dateOfBirth: '9/27/1995' },
+    //        //{ code: 'emp104', name: 'Mery', gender: 'Female', annualSalary: 6500, dateOfBirth: '6/19/1990' }
+    //    ];
+    //}
     EmployeeListComponent.prototype.getEmployees = function () {
         this.employees = [
             { code: 'emp101', name: 'Tom', gender: 'Male', annualSalary: 5500, dateOfBirth: '10/12/1985' },
@@ -52,9 +62,10 @@ EmployeeListComponent = __decorate([
     core_1.Component({
         selector: 'list-employee',
         templateUrl: 'app/employee/employeeList.component.html',
-        styleUrls: ['app/employee/employeeList.component.css']
+        styleUrls: ['app/employee/employeeList.component.css'],
+        providers: [employee_service_1.EmployeeService] //registering EmployeeService to component 
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [employee_service_1.EmployeeService])
 ], EmployeeListComponent);
 exports.EmployeeListComponent = EmployeeListComponent;
 //# sourceMappingURL=employeeList.component.js.map

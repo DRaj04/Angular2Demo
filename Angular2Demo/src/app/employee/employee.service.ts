@@ -1,5 +1,5 @@
-﻿import { Injectable } from '@angular/core'
-import { IEmployee } from './employee'
+﻿import { Injectable } from '@angular/core';
+import { IEmployee } from './employee';
 
 @Injectable()
 export class EmployeeService{
