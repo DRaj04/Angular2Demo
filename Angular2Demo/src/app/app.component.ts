@@ -2,10 +2,18 @@ import { Component } from "@angular/core"
 
 @Component({
     selector: 'my-app',
-    template: `<list-employee></list-employee>`
+    template: `<list-employee></list-employee>
+                <br/>    <br/>    
+                Your text : <input type='text' [(ngModel)]='userText'>
+                <br/>        <br/>        
+                <simple [simpleInput]='userText'> </simple>
+                `
 })
 
 export class AppComponent {
+    //---------
+    userText: string = "Dhundiraj";
+    //---------
     pageHeader: string = "Employee Details"; 
     imagePath: string = 'Images/Logo.JPG'; //<img src='{{imagePath}}'> <img src='http://www.pragimtech.com/{{imagePath}}'>
 

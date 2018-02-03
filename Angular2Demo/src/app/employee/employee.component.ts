@@ -16,7 +16,7 @@ export class EmployeeComponent {
     colspan: number = 2; //both interpolation and property binding can be used for attr binding. needs to be used when there is no corrosponding 
     //dom property for the html attr.
 
-    showDetails: boolean = false;
+    showDetails: boolean = true;
 
     toggleDetails(): void {
         this.showDetails = !this.showDetails;

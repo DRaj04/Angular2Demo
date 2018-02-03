@@ -9,6 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var AppComponent = (function () {
     function AppComponent() {
+        //---------
+        this.userText = "Dhundiraj";
+        //---------
         this.pageHeader = "Employee Details";
         this.imagePath = 'Images/Logo.JPG'; //<img src='{{imagePath}}'> <img src='http://www.pragimtech.com/{{imagePath}}'>
         this.isDisabled = true; //must use property binding for non-string property instead of interpolation.
@@ -51,7 +54,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "<list-employee></list-employee>"
+        template: "<list-employee></list-employee>\n                <br/>    <br/>    \n                Your text : <input type='text' [(ngModel)]='userText'>\n                <br/>        <br/>        \n                <simple [simpleInput]='userText'> </simple>\n                "
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

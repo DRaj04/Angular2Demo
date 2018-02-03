@@ -15,7 +15,7 @@ var EmployeeComponent = (function () {
         this.age = 25;
         this.colspan = 2; //both interpolation and property binding can be used for attr binding. needs to be used when there is no corrosponding 
         //dom property for the html attr.
-        this.showDetails = false;
+        this.showDetails = true;
     }
     EmployeeComponent.prototype.toggleDetails = function () {
         this.showDetails = !this.showDetails;
