@@ -14,6 +14,7 @@ var employee_service_1 = require("./employee.service");
 var EmployeeListComponent = (function () {
     function EmployeeListComponent(_employeeService) {
         this._employeeService = _employeeService;
+        this.statusMessage = 'Loading ... Please wait....';
         //------
         this.selectedEmployeeCountRadioButton = "All";
         //this.employees = this._employeeService.getEmployees();
@@ -22,8 +23,9 @@ var EmployeeListComponent = (function () {
         var _this = this;
         //as service call might be time consuming, better call it in ngOnInit() instead of constructors.
         //this.employees = this._employeeService.getEmployees();
-        this._employeeService.getEmployees().subscribe(function (employeeData) {
-            return _this.employees = employeeData;
+        this._employeeService.getEmployees().subscribe(function (employeeData) { return _this.employees = employeeData; }, function (error) {
+            _this.statusMessage = 'Problem with the service. Please try again after sometime.';
+            console.error(error);
         });
     };
     //constructor()
