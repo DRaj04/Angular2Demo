@@ -23,3 +23,5 @@ Insert into Employees values ('emp106', 'Steve', 'Male', 7700.481, '11/18/1979')
 
 
 SELECT * FROM Employees
+
+--TRUNCATE TABLE Employees
