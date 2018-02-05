@@ -2,15 +2,23 @@ import { Component } from "@angular/core"
 
 @Component({
     selector: 'my-app',
-    template: ` <h3>Component LifeCycle Hook - ngOnChanges()</h3>                
-                Your text : <input type='text' [(ngModel)]='userText'>
-                <br/><br/>        
-                <simple [simpleInput]='userText'> </simple>
-                <br/><br/>
-                <h3>Angular Service </h3>
-                <list-employee></list-employee>
+    template: `<div style="padding:5px">
+                <ul class="nav nav-tabs">
+                    <li routerLinkActive="active" > <a routerLink="home" >Home</a> </li>
+                    <li> <a routerLink="employees" >Employees</a> </li>
+                </ul>
+                    <router-outlet></router-outlet>
+                </div>
                 `
 })
+
+//` <h3>Component LifeCycle Hook - ngOnChanges()</h3>                
+//                Your text : <input type='text' [(ngModel)]='userText'>
+//                <br/><br/>        
+//                <simple [simpleInput]='userText'> </simple>
+//                <br/><br/>
+//                <h3>Angular Service </h3>
+//                <list-employee></list-employee>`
 
 export class AppComponent {
     //---------
