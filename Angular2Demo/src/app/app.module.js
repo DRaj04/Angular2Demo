@@ -19,9 +19,11 @@ var employeeCount_component_1 = require("./employee/employeeCount.component");
 var simple_Component_1 = require("./Others/simple.Component");
 var home_Component_1 = require("./home/home.Component");
 var pageNotFound_Component_1 = require("./Others/pageNotFound.Component");
+var employee_service_1 = require("./employee/employee.service");
 var appRoutes = [
     { path: 'home', component: home_Component_1.HomeComponent },
-    { path: 'employees', component: employee_component_1.EmployeeComponent },
+    { path: 'employees', component: employeeList_component_1.EmployeeListComponent },
+    { path: 'employees/:code', component: employee_component_1.EmployeeComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: pageNotFound_Component_1.PageNotFoundComponent }
 ];
@@ -32,10 +34,24 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, router_1.RouterModule.forRoot(appRoutes, { useHash: true })],
-        declarations: [app_component_1.AppComponent, employee_component_1.EmployeeComponent, employeeList_component_1.EmployeeListComponent, employeeTitle_pipe_1.EmployeeTitlePipe, employeeCount_component_1.EmployeeCountComponent,
-            simple_Component_1.SimpleComponent, home_Component_1.HomeComponent, pageNotFound_Component_1.PageNotFoundComponent],
-        bootstrap: [app_component_1.AppComponent]
+        imports: [
+            platform_browser_1.BrowserModule,
+            forms_1.FormsModule,
+            http_1.HttpModule,
+            router_1.RouterModule.forRoot(appRoutes, { useHash: true })
+        ],
+        declarations: [
+            app_component_1.AppComponent,
+            employee_component_1.EmployeeComponent,
+            employeeList_component_1.EmployeeListComponent,
+            employeeTitle_pipe_1.EmployeeTitlePipe,
+            employeeCount_component_1.EmployeeCountComponent,
+            simple_Component_1.SimpleComponent,
+            home_Component_1.HomeComponent,
+            pageNotFound_Component_1.PageNotFoundComponent
+        ],
+        bootstrap: [app_component_1.AppComponent],
+        providers: [employee_service_1.EmployeeService]
     })
 ], AppModule);
 exports.AppModule = AppModule;

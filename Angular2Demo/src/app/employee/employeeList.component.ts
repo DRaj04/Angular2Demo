@@ -6,10 +6,9 @@ import { EmployeeService } from './employee.service';
 @Component({
     selector: 'list-employee',
     templateUrl: 'app/employee/employeeList.component.html',
-    styleUrls: ['app/employee/employeeList.component.css'],
-    providers: [EmployeeService] //registering EmployeeService to component 
+    styleUrls: ['app/employee/employeeList.component.css']
 })
-
+    //providers: [EmployeeService] //registering EmployeeService to component -MOVED TO app.module for SINGLETON INSTANCE ACCROSS APPLICATION
 export class EmployeeListComponent implements OnInit {
 
     employees: IEmployee[]; //any[];
