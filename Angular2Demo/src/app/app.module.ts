@@ -13,6 +13,7 @@ import { SimpleComponent } from './Others/simple.Component';
 import { HomeComponent } from './home/home.Component';
 import { PageNotFoundComponent } from './Others/pageNotFound.Component';
 import { EmployeeService } from './employee/employee.service';
+import { UserPreferencesService } from './employee/userPreferences.service';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
         HomeComponent,
         PageNotFoundComponent],
     bootstrap: [AppComponent],
-    providers: [EmployeeService]
+    providers: [EmployeeService,
+        UserPreferencesService]
 })
 export class AppModule { }

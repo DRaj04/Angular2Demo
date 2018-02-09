@@ -6,3 +6,4 @@ C:\Projects\AngularJS2\Angular2Demo\Angular2Demo\bin\Microsoft.CodeDom.Providers
 C:\Projects\AngularJS2\Angular2Demo\Angular2Demo\obj\Debug\Angular2Demo.csproj.CoreCompileInputs.cache
 C:\Projects\AngularJS2\Angular2Demo\Angular2Demo\obj\Debug\Angular2Demo.dll
 C:\Projects\AngularJS2\Angular2Demo\Angular2Demo\obj\Debug\Angular2Demo.pdb
+C:\Projects\AngularJS2\Angular2Demo\Angular2Demo\obj\Debug\Angular2Demo.csprojResolveAssemblyReference.cache

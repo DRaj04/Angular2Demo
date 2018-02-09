@@ -11,14 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var employee_service_1 = require("./employee.service");
+var userPreferences_service_1 = require("../employee/userPreferences.service");
 var EmployeeListComponent = (function () {
-    function EmployeeListComponent(_employeeService) {
+    function EmployeeListComponent(_employeeService, _userPreferencesService) {
         this._employeeService = _employeeService;
+        this._userPreferencesService = _userPreferencesService;
         this.statusMessage = 'Loading ... Please wait....';
         //------
         this.selectedEmployeeCountRadioButton = "All";
         //this.employees = this._employeeService.getEmployees();
+        //this._userPreferencesService = new UserPreferencesService();
     }
+    Object.defineProperty(EmployeeListComponent.prototype, "colour", {
+        get: function () {
+            return this._userPreferencesService.colorPreference;
+        },
+        set: function (value) {
+            this._userPreferencesService.colorPreference = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     EmployeeListComponent.prototype.ngOnInit = function () {
         var _this = this;
         //as service call might be time consuming, better call it in ngOnInit() instead of constructors.
@@ -72,7 +85,7 @@ EmployeeListComponent = __decorate([
     })
     //providers: [EmployeeService] //registering EmployeeService to component -MOVED TO app.module for SINGLETON INSTANCE ACCROSS APPLICATION
     ,
-    __metadata("design:paramtypes", [employee_service_1.EmployeeService])
+    __metadata("design:paramtypes", [employee_service_1.EmployeeService, userPreferences_service_1.UserPreferencesService])
 ], EmployeeListComponent);
 exports.EmployeeListComponent = EmployeeListComponent;
 //# sourceMappingURL=employeeList.component.js.map

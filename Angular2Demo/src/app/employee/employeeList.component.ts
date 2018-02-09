@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { IEmployee } from './employee';
 import { EmployeeService } from './employee.service';
+import { UserPreferencesService } from '../employee/userPreferences.service';
 
 
 @Component({
@@ -10,12 +11,22 @@ import { EmployeeService } from './employee.service';
 })
     //providers: [EmployeeService] //registering EmployeeService to component -MOVED TO app.module for SINGLETON INSTANCE ACCROSS APPLICATION
 export class EmployeeListComponent implements OnInit {
+    //private _userPreferencesService: UserPreferencesService;
 
     employees: IEmployee[]; //any[];
     statusMessage: string = 'Loading ... Please wait....';
-    constructor(private _employeeService: EmployeeService) { //e.g. dependency injection
+    constructor(private _employeeService: EmployeeService, private _userPreferencesService: UserPreferencesService) { //e.g. dependency injection
         //this.employees = this._employeeService.getEmployees();
+        //this._userPreferencesService = new UserPreferencesService();
     }
+
+    get colour(): string {
+        return this._userPreferencesService.colorPreference;
+    }
+    set colour(value: string) {
+        this._userPreferencesService.colorPreference = value;
+    }
+
 
     ngOnInit() {
         //as service call might be time consuming, better call it in ngOnInit() instead of constructors.
