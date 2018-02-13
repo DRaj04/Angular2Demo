@@ -11,6 +11,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
+var test_module_1 = require("./test.module");
 var app_component_1 = require("./app.component");
 var employee_component_1 = require("./employee/employee.component");
 var employeeList_component_1 = require("./employee/employeeList.component");
@@ -20,7 +21,6 @@ var simple_Component_1 = require("./Others/simple.Component");
 var home_Component_1 = require("./home/home.Component");
 var pageNotFound_Component_1 = require("./Others/pageNotFound.Component");
 var employee_service_1 = require("./employee/employee.service");
-var userPreferences_service_1 = require("./employee/userPreferences.service");
 var appRoutes = [
     { path: 'home', component: home_Component_1.HomeComponent },
     { path: 'employees', component: employeeList_component_1.EmployeeListComponent },
@@ -39,6 +39,7 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             http_1.HttpModule,
+            test_module_1.TestModule,
             router_1.RouterModule.forRoot(appRoutes, { useHash: true })
         ],
         declarations: [
@@ -52,8 +53,7 @@ AppModule = __decorate([
             pageNotFound_Component_1.PageNotFoundComponent
         ],
         bootstrap: [app_component_1.AppComponent],
-        providers: [employee_service_1.EmployeeService,
-            userPreferences_service_1.UserPreferencesService]
+        providers: [employee_service_1.EmployeeService]
     })
 ], AppModule);
 exports.AppModule = AppModule;

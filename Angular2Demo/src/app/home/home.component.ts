@@ -7,6 +7,7 @@ import { UserPreferencesService } from '../employee/userPreferences.service';
                 Colour Preference : <input type='text' [(ngModel)]='colour' [style.background]='colour' />
                 </div>
                 `
+    //providers: [UserPreferencesService] //component level injector
 })
 
 export class HomeComponent {

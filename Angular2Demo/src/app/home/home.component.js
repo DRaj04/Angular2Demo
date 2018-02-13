@@ -32,6 +32,7 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     core_1.Component({
         template: "<h1>This is home page.</h1>\n                <div>\n                Colour Preference : <input type='text' [(ngModel)]='colour' [style.background]='colour' />\n                </div>\n                "
+        //providers: [UserPreferencesService] //component level injector
     }),
     __metadata("design:paramtypes", [userPreferences_service_1.UserPreferencesService])
 ], HomeComponent);
