@@ -26,7 +26,7 @@ export class EmployeeComponent implements OnInit {
 
     ngOnInit() {
         let empCode: string = this._activatedRoute.snapshot.params['code'];
-        this._emplopyeeService.getEmployeeByCode(empCode).subscribe(
+        this._emplopyeeService.getEmployeeByCode(empCode).then( //'subscribe()' is used with observable and 'then()' with Promise
             (empData) => {
                 if (empData == null) {
                     this.statusMessage = "Invalid Employee Code";
@@ -34,12 +34,12 @@ export class EmployeeComponent implements OnInit {
                 else {
                     this.employee = empData
                 }
-            },
+            }
+        ).catch(
             (error) => {
                 console.log(error);
                 this.statusMessage = "Problem with the service. Please try again after sometime.";
-            }
-        );
+            });
     }
 
     //firstname: string = "Tom";

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/Observable/throw';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class EmployeeService{
@@ -18,12 +19,24 @@ export class EmployeeService{
             .map((response: Response) => <IEmployee[]>response.json())
             .catch(this.handleError);
     }
-
-    getEmployeeByCode(empCode: string): Observable<IEmployee> {
+    //PROMISE
+    getEmployeeByCode(empCode: string): Promise<IEmployee> {
         return this._http.get("http://localhost:50773/api/employees/" + empCode)
             .map((response: Response) => <IEmployee>response.json())
-            .catch(this.handleError);
+            .toPromise()
+            .catch(this.handlePromiseError);
     }
+    handlePromiseError(error: Response) {
+        console.error(error);
+        throw(error);
+    }
+
+    //OBSERVABLE
+    //getEmployeeByCode(empCode: string): Observable<IEmployee> {
+    //    return this._http.get("http://localhost:50773/api/employees/" + empCode)
+    //        .map((response: Response) => <IEmployee>response.json())
+    //        .catch(this.handleError);
+    //}
 
     handleError(error: Response) {
         console.error(error);

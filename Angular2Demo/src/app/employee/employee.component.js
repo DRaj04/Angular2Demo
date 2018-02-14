@@ -25,14 +25,15 @@ var EmployeeComponent = (function () {
     EmployeeComponent.prototype.ngOnInit = function () {
         var _this = this;
         var empCode = this._activatedRoute.snapshot.params['code'];
-        this._emplopyeeService.getEmployeeByCode(empCode).subscribe(function (empData) {
+        this._emplopyeeService.getEmployeeByCode(empCode).then(//'subscribe()' is used with observable and 'then()' with Promise
+        function (empData) {
             if (empData == null) {
                 _this.statusMessage = "Invalid Employee Code";
             }
             else {
                 _this.employee = empData;
             }
-        }, function (error) {
+        }).catch(function (error) {
             console.log(error);
             _this.statusMessage = "Problem with the service. Please try again after sometime.";
         });
