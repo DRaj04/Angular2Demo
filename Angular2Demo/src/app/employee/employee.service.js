@@ -26,22 +26,22 @@ var EmployeeService = (function () {
             .catch(this.handleError);
     };
     //PROMISE
-    EmployeeService.prototype.getEmployeeByCode = function (empCode) {
-        return this._http.get("http://localhost:50773/api/employees/" + empCode)
-            .map(function (response) { return response.json(); })
-            .toPromise()
-            .catch(this.handlePromiseError);
-    };
+    //getEmployeeByCode(empCode: string): Promise<IEmployee> {
+    //    return this._http.get("http://localhost:50773/api/employees/" + empCode)
+    //        .map((response: Response) => <IEmployee>response.json())
+    //        .toPromise()
+    //        .catch(this.handlePromiseError);
+    //}
     EmployeeService.prototype.handlePromiseError = function (error) {
         console.error(error);
         throw (error);
     };
     //OBSERVABLE
-    //getEmployeeByCode(empCode: string): Observable<IEmployee> {
-    //    return this._http.get("http://localhost:50773/api/employees/" + empCode)
-    //        .map((response: Response) => <IEmployee>response.json())
-    //        .catch(this.handleError);
-    //}
+    EmployeeService.prototype.getEmployeeByCode = function (empCode) {
+        return this._http.get("http://localhost:50773/api/employees/" + empCode)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     EmployeeService.prototype.handleError = function (error) {
         console.error(error);
         return Observable_1.Observable.throw(error);

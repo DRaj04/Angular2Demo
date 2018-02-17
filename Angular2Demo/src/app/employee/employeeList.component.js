@@ -36,7 +36,8 @@ var EmployeeListComponent = (function () {
         var _this = this;
         //as service call might be time consuming, better call it in ngOnInit() instead of constructors.
         //this.employees = this._employeeService.getEmployees();
-        this._employeeService.getEmployees().subscribe(function (employeeData) { return _this.employees = employeeData; }, function (error) {
+        this._employeeService.getEmployees()
+            .subscribe(function (employeeData) { return _this.employees = employeeData; }, function (error) {
             _this.statusMessage = 'Problem with the service. Please try again after sometime.';
             console.error(error);
         });

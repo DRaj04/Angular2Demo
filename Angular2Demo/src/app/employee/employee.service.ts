@@ -20,23 +20,23 @@ export class EmployeeService{
             .catch(this.handleError);
     }
     //PROMISE
-    getEmployeeByCode(empCode: string): Promise<IEmployee> {
-        return this._http.get("http://localhost:50773/api/employees/" + empCode)
-            .map((response: Response) => <IEmployee>response.json())
-            .toPromise()
-            .catch(this.handlePromiseError);
-    }
+    //getEmployeeByCode(empCode: string): Promise<IEmployee> {
+    //    return this._http.get("http://localhost:50773/api/employees/" + empCode)
+    //        .map((response: Response) => <IEmployee>response.json())
+    //        .toPromise()
+    //        .catch(this.handlePromiseError);
+    //}
     handlePromiseError(error: Response) {
         console.error(error);
         throw(error);
     }
 
     //OBSERVABLE
-    //getEmployeeByCode(empCode: string): Observable<IEmployee> {
-    //    return this._http.get("http://localhost:50773/api/employees/" + empCode)
-    //        .map((response: Response) => <IEmployee>response.json())
-    //        .catch(this.handleError);
-    //}
+    getEmployeeByCode(empCode: string): Observable<IEmployee> {
+        return this._http.get("http://localhost:50773/api/employees/" + empCode)
+            .map((response: Response) => <IEmployee>response.json())
+            .catch(this.handleError);
+    }
 
     handleError(error: Response) {
         console.error(error);

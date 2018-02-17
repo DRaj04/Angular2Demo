@@ -12,6 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var employee_service_1 = require("./employee.service");
+require("rxjs/add/operator/retry");
+require("rxjs/add/operator/retrywhen");
+require("rxjs/add/operator/delay");
+require("rxjs/add/operator/scan");
 var EmployeeComponent = (function () {
     function EmployeeComponent(_emplopyeeService, _activatedRoute, _router) {
         this._emplopyeeService = _emplopyeeService;
@@ -25,15 +29,27 @@ var EmployeeComponent = (function () {
     EmployeeComponent.prototype.ngOnInit = function () {
         var _this = this;
         var empCode = this._activatedRoute.snapshot.params['code'];
-        this._emplopyeeService.getEmployeeByCode(empCode).then(//'subscribe()' is used with observable and 'then()' with Promise
-        function (empData) {
+        this._emplopyeeService.getEmployeeByCode(empCode)
+            .retryWhen(function (err) {
+            return err.scan(function (retryCount) {
+                retryCount += 1;
+                if (retryCount < 6) {
+                    _this.statusMessage = 'Retrying....Attempt # ' + retryCount;
+                    return retryCount;
+                }
+                else {
+                    throw (err);
+                }
+            }, 0).delay(1000);
+        })
+            .subscribe(function (empData) {
             if (empData == null) {
                 _this.statusMessage = "Invalid Employee Code";
             }
             else {
                 _this.employee = empData;
             }
-        }).catch(function (error) {
+        }, function (error) {
             console.log(error);
             _this.statusMessage = "Problem with the service. Please try again after sometime.";
         });
