@@ -29,7 +29,7 @@ var EmployeeComponent = (function () {
     EmployeeComponent.prototype.ngOnInit = function () {
         var _this = this;
         var empCode = this._activatedRoute.snapshot.params['code'];
-        this._emplopyeeService.getEmployeeByCode(empCode)
+        this.subscription = this._emplopyeeService.getEmployeeByCode(empCode)
             .retryWhen(function (err) {
             return err.scan(function (retryCount) {
                 retryCount += 1;
@@ -40,7 +40,7 @@ var EmployeeComponent = (function () {
                 else {
                     throw (err);
                 }
-            }, 0).delay(1000);
+            }, 0).delay(1000); //It is going to make 5 attemtps at every 1 sec starting from 0 to 5 count.
         })
             .subscribe(function (empData) {
             if (empData == null) {
@@ -53,6 +53,11 @@ var EmployeeComponent = (function () {
             console.log(error);
             _this.statusMessage = "Problem with the service. Please try again after sometime.";
         });
+    };
+    //Unsubscribe from the service
+    EmployeeComponent.prototype.onCancelButtonClick = function () {
+        this.statusMessage = 'Request Cancelled';
+        this.subscription.unsubscribe();
     };
     return EmployeeComponent;
 }());

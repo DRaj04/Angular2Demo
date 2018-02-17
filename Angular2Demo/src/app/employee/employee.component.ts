@@ -6,6 +6,7 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/retrywhen';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/scan';
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'my-employee',
@@ -28,37 +29,46 @@ export class EmployeeComponent implements OnInit {
         this._router.navigate(['/employees'])
     }
 
+    subscription: ISubscription;
+
     ngOnInit() {
         let empCode: string = this._activatedRoute.snapshot.params['code'];
-        this._emplopyeeService.getEmployeeByCode(empCode)
-            //.retry(3)
-            //.retryWhen((err) => err.delay(1000))
-            .retryWhen((err) => {
-                return err.scan((retryCount) => {
-                    retryCount += 1;
-                    if (retryCount < 6) {
-                        this.statusMessage = 'Retrying....Attempt # ' + retryCount;
-                        return retryCount;
-                    }
-                    else {
-                        throw (err);
-                    }
-                }, 0).delay(1000)
 
-            })
-            .subscribe(
-            (empData) => {
-                if (empData == null) {
-                    this.statusMessage = "Invalid Employee Code";
-                }
-                else {
-                    this.employee = empData
-                }
-            },
-            (error) => {
-                console.log(error);
-                this.statusMessage = "Problem with the service. Please try again after sometime.";
-            });
+        this.subscription = this._emplopyeeService.getEmployeeByCode(empCode)
+                            //.retry(3)
+                            //.retryWhen((err) => err.delay(1000))
+                            .retryWhen((err) => {
+                                return err.scan((retryCount) => {
+                                    retryCount += 1;
+                                    if (retryCount < 6) {
+                                        this.statusMessage = 'Retrying....Attempt # ' + retryCount;
+                                        return retryCount;
+                                    }
+                                    else {
+                                        throw (err);
+                                    }
+                                }, 0).delay(1000)//It is going to make 5 attemtps at every 1 sec starting from 0 to 5 count.
+
+                            })
+                            .subscribe(
+                            (empData) => {
+                                if (empData == null) {
+                                    this.statusMessage = "Invalid Employee Code";
+                                }
+                                else {
+                                    this.employee = empData
+                                }
+                            },
+                            (error) => {
+                                console.log(error);
+                                this.statusMessage = "Problem with the service. Please try again after sometime.";
+                            });
+    }
+
+    //Unsubscribe from the service
+    onCancelButtonClick(): void {
+        this.statusMessage= 'Request Cancelled';
+        this.subscription.unsubscribe();
     }
 
     //firstname: string = "Tom";

@@ -32,5 +32,10 @@
 <div *ngIf="!employee">
     {{statusMessage}}
 </div>
-<br/>
-<input type="button" value="Back to Employee List" class="btn btn-primary" (click)="onBackButtonClick()"/>
+
+<div style="margin: 5px">
+    <input type="button" value="Back to Employee List" class="btn btn-primary" (click)="onBackButtonClick()" />
+</div>
+<div style="margin: 5px" *ngIf="!subscription.closed">
+    <input type="button" value="Cancel Request" class="btn btn-primary" (click)="onCancelButtonClick()" />
+</div>
